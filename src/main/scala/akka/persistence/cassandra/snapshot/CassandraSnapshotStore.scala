@@ -21,7 +21,9 @@ abstract class CassandraSnapshotStore extends SnapshotStore with CassandraStatem
 
   this: PluginConfiguration =>
 
-  val config = new CassandraSnapshotStoreConfig(context.system.settings.config.getConfig(configurationKey))
+  private val systemConfig = context.system.settings.config
+
+  val config = new CassandraSnapshotStoreConfig(pluginConfig(systemConfig))
   val serialization = SerializationExtension(context.system)
 
   import context.dispatcher

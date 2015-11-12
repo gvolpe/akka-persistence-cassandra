@@ -1,13 +1,15 @@
 package akka.persistence.cassandra
 
+import com.typesafe.config.Config
+
 trait PluginConfiguration {
-  def configurationKey: String
+  def pluginConfig(systemConfig: Config): Config
 }
 
 trait DefaultJournalPluginConfiguration extends PluginConfiguration {
-  override def configurationKey: String = "cassandra-journal"
+  override def pluginConfig(systemConfig: Config): Config = systemConfig.getConfig("cassandra-journal")
 }
 
 trait DefaultSnapshotPluginConfiguration extends PluginConfiguration {
-  override def configurationKey: String = "cassandra-snapshot-store"
+  override def pluginConfig(systemConfig: Config): Config = systemConfig.getConfig("cassandra-snapshot-store")
 }
