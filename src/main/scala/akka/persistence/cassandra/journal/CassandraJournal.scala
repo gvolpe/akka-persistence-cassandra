@@ -20,9 +20,11 @@ import akka.serialization.SerializationExtension
 import com.datastax.driver.core._
 import com.datastax.driver.core.utils.Bytes
 
-class CassandraJournal extends AsyncWriteJournal with CassandraRecovery with CassandraConfigChecker with CassandraStatements {
+abstract class CassandraJournal extends AsyncWriteJournal with CassandraRecovery with CassandraConfigChecker with CassandraStatements {
 
-  val config = new CassandraJournalConfig(context.system.settings.config.getConfig("cassandra-journal"))
+  this: PluginConfiguration =>
+
+  val config = new CassandraJournalConfig(context.system.settings.config.getConfig(configurationKey))
   val serialization = SerializationExtension(context.system)
 
   import config._

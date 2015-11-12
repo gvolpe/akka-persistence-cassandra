@@ -1,0 +1,5 @@
+package akka.persistence.cassandra.snapshot
+
+import akka.persistence.cassandra.DefaultSnapshotPluginConfiguration
+
+class DefaultCassandraSnapshotStore extends CassandraSnapshotStore with DefaultSnapshotPluginConfiguration

@@ -1,0 +1,5 @@
+package akka.persistence.cassandra.journal
+
+import akka.persistence.cassandra.DefaultJournalPluginConfiguration
+
+class DefaultCassandraJournal extends CassandraJournal with DefaultJournalPluginConfiguration
